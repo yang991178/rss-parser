@@ -240,6 +240,7 @@ var Parser = function () {
       var timeout = null;
       var prom = new Promise(function (resolve, reject) {
         var requestOpts = Object.assign({ headers: headers }, urlParts, _this2.options.requestOptions);
+        requestOpts.defaultPort = get === https.get ? 443 : 80;
         var req = get(requestOpts, function (res) {
           if (_this2.options.maxRedirects && res.statusCode >= 300 && res.statusCode < 400 && res.headers['location']) {
             if (redirectCount === _this2.options.maxRedirects) {
